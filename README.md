@@ -9,7 +9,7 @@ call the transmit funciton to send
 1.serial  
 
 ## requirments
-1> windows
-python -m venv protocol_framer
-.\protocol_framer\Scripts\Activate.ps1   
-pip install -r requirements.txt  
+1) windows  
+  1>python -m venv protocol_framer  
+  2>.\protocol_framer\Scripts\Activate.ps1   
+  3>pip install -r requirements.txt  
