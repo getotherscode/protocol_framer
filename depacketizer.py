@@ -17,14 +17,15 @@ def parse_bin_file_size(path: list[str]) -> int:
     bin_size = os.path.getsize(path)
 
     print(f"{path} file size: {bin_size}")
+
     return bin_size
     
-def depacketizer(single_pack_size:int, path: list[str], start_addr: int):
+def depacketizer(single_pack_size:int, path: list[str], start_addr: int) -> bytes:
     if not os.path.exists(path):
         raise FileNotFoundError(f"{path} do not exist !!!")
 
     with open(path, "rb") as f:                                   # with as is context manager, close file automatically, "rb" read only binary
             f.seek(start_addr)
-            pack = f.read(single_pack_size)                       # if left bytes is less than 1024, will return all left bytes
-            if not pack: raise RuntimeError(f".bin read from {start_addr} is failed  !!!")
+            pack: bytes = f.read(single_pack_size)                # if left bytes is less than 1024, will return all left bytes
+            if not pack: raise RuntimeError(f".bin read {single_pack_size} from {start_addr} is failed  !!!")
             return pack
