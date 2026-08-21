@@ -88,6 +88,7 @@ def ota_task(my_serial: serial.Serial, path: list[str]):
             info_frame: bytes = pack_message(DEVICE_ADDR, Message_Type.MSG_PACK_INFO_RQST, 4, pack_info)
             serial_transmit(my_serial, info_frame)
             ota_obj.state = OTA_State.OTA_WAIT
+            print(f"OTA STATE: OTA_WAIT")
 
         case OTA_State.OTA_PACK_RQST:
             print(f"OTA STATE: OTA_PACK_RQST")
@@ -115,6 +116,7 @@ def ota_task(my_serial: serial.Serial, path: list[str]):
             serial_transmit(my_serial, pack_frame)
             print(f"fireware length = {len(data_frame) - 4}")
             ota_obj.state = OTA_State.OTA_WAIT
+            print(f"OTA STATE: OTA_WAIT")
 
         case OTA_State.OTA_FINISH:
             print(f"OTA STATE: OTA_FINISH")
@@ -124,8 +126,7 @@ def ota_task(my_serial: serial.Serial, path: list[str]):
             print("OTA process finish !!!")
 
         case OTA_State.OTA_WAIT:
-            print(f"OTA STATE: OTA_WAIT")
-            time.sleep(1)
+            pass
 
 
 def main():
